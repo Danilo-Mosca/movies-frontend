@@ -1,0 +1,41 @@
+/* variabili di root */
+:root {
+  --color-red-text-sidebar: #DB2B39;
+  --color-paragraph: #4d4c4c;
+  --color-footer: #1C1C1C;
+}
+
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Josefin Sans", sans-serif;
+  font-size: 17px;
+  line-height: 28px;
+  font-weight: 300;
+}
+
+main {
+  font-family: "Josefin Sans", sans-serif;
+  font-size: 17px;
+  line-height: 28px;
+  font-weight: 300;
+  background-color: #fff;
+  overflow-x: hidden !important;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Classe di debug */
+.debug {
+  // border: 1px solid var(--prova1);
+  border: 1px solid red;
+}
+
+/* Classe fluida per le immagini */
+img {
+  width: 100%;
+  max-width: 100%;
+  display: block;
+  object-fit: cover;
+}
