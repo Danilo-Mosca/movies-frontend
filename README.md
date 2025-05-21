@@ -16,6 +16,9 @@ npm run dev
 # apro il .gitignore e aggiungo package-lock.json
 
  # installo gli altri pacchetti che mi servono
+ npm install bootstrap
+ npm install react-bootstrap
+ npm install axios
 
  # cancello il contenuto di App.jsx e rimuovo gli import che non mi servono
  # cancello i file che non mi servono

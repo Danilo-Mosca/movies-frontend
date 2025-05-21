@@ -28,7 +28,6 @@ main {
 
 /* Classe di debug */
 .debug {
-  // border: 1px solid var(--prova1);
   border: 1px solid red;
 }
 
@@ -37,5 +36,14 @@ img {
   width: 100%;
   max-width: 100%;
   display: block;
+  /* Riempio l'immagine nel contenitore mantenendo le
+      sue proporzioni ma ritagliando eventualmente i
+      bordi per adattarla al suo contenitore */
   object-fit: cover;
 }
+
+/* body {
+  background-color: #0E0E0E;
+  margin: 0 auto;
+  font-family: "Josefin Sans", sans-serif;
+} */
