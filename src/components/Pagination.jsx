@@ -1,16 +1,22 @@
 function Pagination({ currentPage, lastPage, onPageChange }) {
+    // Calcola l'elenco delle pagine da mostrare
     const getPages = () => {
         const pages = [];
 
         if (lastPage <= 7) {
-            // Se le pagine totali sono poche, mostro tutte
+            // Se le pagine totali sono poche: fino a 7, le mostro tutte
             for (let i = 1; i <= lastPage; i++) pages.push(i);
         } else {
+            // Se sono nelle prime 4 pagine
             if (currentPage <= 4) {
                 pages.push(1, 2, 3, 4, 5, "...", lastPage);
-            } else if (currentPage >= lastPage - 3) {
+            }
+            // Se sono nelle ultime 4 pagine
+            else if (currentPage >= lastPage - 3) {
                 pages.push(1, "...", lastPage - 4, lastPage - 3, lastPage - 2, lastPage - 1, lastPage);
-            } else {
+            }
+            // Se sono in mezzo
+            else {
                 pages.push(1, "...", currentPage - 1, currentPage, currentPage + 1, "...", lastPage);
             }
         }
@@ -18,6 +24,7 @@ function Pagination({ currentPage, lastPage, onPageChange }) {
         return pages;
     };
 
+    // Al cambio pagina faccio lo scroll automatico in cima
     const goTo = (page) => {
         if (page !== "..." && page !== currentPage) {
             onPageChange(page);
@@ -27,10 +34,10 @@ function Pagination({ currentPage, lastPage, onPageChange }) {
 
     return (
         <div className="d-flex justify-content-center mt-4 flex-wrap gap-2">
-            {/* MOBILE: solo pulsanti */}
+            {/* MOBILE: visualizzo solo i due pulsanti di navigazione. Con d-md-none nascondo gli altri dispositivi*/}
             <div className="d-md-none d-flex gap-2">
                 <button
-                    className="btn btn-secondary"
+                    className="button"
                     disabled={currentPage === 1}
                     onClick={() => goTo(currentPage - 1)}
                 >
@@ -38,7 +45,7 @@ function Pagination({ currentPage, lastPage, onPageChange }) {
                 </button>
                 <span className="align-self-center">Pagina {currentPage} di {lastPage}</span>
                 <button
-                    className="btn btn-secondary"
+                    className="button"
                     disabled={currentPage === lastPage}
                     onClick={() => goTo(currentPage + 1)}
                 >
@@ -46,13 +53,16 @@ function Pagination({ currentPage, lastPage, onPageChange }) {
                 </button>
             </div>
 
-            {/* DESKTOP: numeri + frecce */}
+            {/* DESKTOP: numeri + icone frecce. Con d-none escludo la visualizzazione ai dispositivi small quali gli smartphone */}
             <div className="d-none d-md-flex gap-2 flex-wrap">
+                {/* Vai alla prima */}
                 <button className="button next-prev-page" disabled={currentPage === 1} onClick={() => goTo(1)}>
-                    «
+                    {/* Icona Bootstrap sinistra */}
+                    <i className="bi bi-chevron-double-left"></i>
                 </button>
+                {/* Pagina precedente */}
                 <button className="button next-prev-page" disabled={currentPage === 1} onClick={() => goTo(currentPage - 1)}>
-                    ‹
+                    <i className="bi bi-chevron-left"></i>
                 </button>
 
                 {getPages().map((page, i) => (
@@ -66,11 +76,13 @@ function Pagination({ currentPage, lastPage, onPageChange }) {
                     </button>
                 ))}
 
+                {/* Pagina successiva */}
                 <button className="button next-prev-page" disabled={currentPage === lastPage} onClick={() => goTo(currentPage + 1)}>
-                    ›
+                    <i className="bi bi-chevron-right"></i>
                 </button>
+                {/* Vai all'ultima pagina */}
                 <button className="button next-prev-page" disabled={currentPage === lastPage} onClick={() => goTo(lastPage)}>
-                    »
+                    <i className="bi bi-chevron-double-right"></i>
                 </button>
             </div>
         </div>
