@@ -23,7 +23,7 @@ function MainComponent() {
                 setMovies(res.data.results.data);
                 setCurrentPage(res.data.results.current_page);
                 setLastPage(res.data.results.last_page);
-                
+
                 console.log(res.data.results.data);
             })
             .catch((err) => {
@@ -37,6 +37,15 @@ function MainComponent() {
 
     return (
         <main className="container py-3">
+
+            <div className="d-md-none d-flex gap-2 pb-3">
+                <Pagination
+                    currentPage={currentPage}
+                    lastPage={lastPage}
+                    onPageChange={(page) => setCurrentPage(page)}
+                />
+            </div>
+
             <div className="row gy-4">
                 {movies.map((movie) => (
                     <div className="col-12 col-md-4 col-lg-3" key={movie.id}>

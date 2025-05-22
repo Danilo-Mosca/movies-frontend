@@ -47,3 +47,51 @@ img {
   margin: 0 auto;
   font-family: "Josefin Sans", sans-serif;
 } */
+
+
+/* --------------- Pulsanti della paginazione: da aggiungere eventualmente in un suo module.css --------------- */
+button {
+  color: black;
+  border: 1px solid black;
+  background-color: white;
+  text-transform: uppercase;
+  font-size: 16px !important;
+  font-weight: 600;
+  padding: 5px 15px;
+}
+
+button:hover {
+  color: white;
+  border: 1px solid black;
+  background-color: black;
+  text-transform: uppercase;
+  font-size: 16px !important;
+  font-weight: 600;
+  padding: 5px 15px;
+}
+
+button.selected {
+  background-color: var(--color-red-text-sidebar);
+  color: white;
+  border-color: var(--color-red-text-sidebar);
+}
+
+button.next-prev-page:hover {
+  background-color: gray;
+  border: 1px solid gray;
+  color: white;
+}
+
+button.next-prev-page {
+  background-color: white;
+  border: 1px solid gray;
+  color: gray;
+}
+
+button:disabled,
+button:disabled:hover {
+  background-color: white;
+  color: gray;
+  border: 1px solid gray;
+}
+/* --------------- Fine pulsanti della paginazione: da aggiungere eventualmente in un suo module.css --------------- */
