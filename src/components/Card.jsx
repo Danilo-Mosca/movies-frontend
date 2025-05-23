@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 function Card({ data }) {
 
     const posterUrl = import.meta.env.VITE_API_POSTER;
@@ -11,6 +13,7 @@ function Card({ data }) {
                 {/* <a href="#" className="btn btn-primary" onClick={onShowMovie}>
                     Maggiori info
                 </a> */}
+            <Link to={`/movies/${data.slug}`}>Dettagli</Link>
             </div>
         </div>
     );
