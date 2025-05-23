@@ -25,8 +25,8 @@ function Header() {
                                 style={{ maxHeight: '100px' }}
                                 navbarScroll
                             >
-                                <NavLink to="/" className="nav-link">Home</NavLink>
-                                <NavLink to="/movies" className="nav-link">Ricerca avanzata</NavLink>
+                                <NavLink to="/" end className={({ isActive }) => `nav-link ${isActive ? "item-selected" : ""}`}>Home</NavLink>
+                                <NavLink to="/movies" end className={({ isActive }) => `nav-link ${isActive ? "item-selected" : ""}`}>Ricerca avanzata</NavLink>
                                 {/* <NavDropdown title="Link" id="navbarScrollingDropdown">
                                     <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
                                     <NavDropdown.Item href="#action4">

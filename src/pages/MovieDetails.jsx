@@ -2,7 +2,7 @@
 import { useParams } from "react-router-dom";
 
 export default function MovieDetails() {
-    const { slug } = useParams()  //slug: slug-del-film
+    const { slug } = useParams()  //slug: slug-del-film ricavato dall'url
     return (
         <>
             <section className="container py-4">

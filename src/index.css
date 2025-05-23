@@ -70,7 +70,6 @@ button:hover {
 }
 
 /* --------------- Pulsanti della paginazione: da aggiungere SICURAMENTE in un suo module.css --------------- */
-
 .button-pagination {
   /* color: black;
   border: 1px solid black;
@@ -128,5 +127,11 @@ button:hover {
   color: #6C757D;
   border: 1px solid #DEE2E6;
 }
-
 /* --------------- Fine pulsanti della paginazione: da aggiungere eventualmente in un suo module.css --------------- */
+
+
+/* creare un Header.module.css ed inserirci il seguente CSS personalizzato: */
+.item-selected {
+  color: var(--color-red-text-sidebar)!important;
+  font-weight: 900;
+}
