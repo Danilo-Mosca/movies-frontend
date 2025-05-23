@@ -49,7 +49,6 @@ img {
 } */
 
 
-/* --------------- Pulsanti della paginazione: da aggiungere SICURAMENTE in un suo module.css --------------- */
 button {
   color: black;
   border: 1px solid black;
@@ -70,28 +69,64 @@ button:hover {
   padding: 5px 15px;
 }
 
-button.selected {
+/* --------------- Pulsanti della paginazione: da aggiungere SICURAMENTE in un suo module.css --------------- */
+
+.button-pagination {
+  /* color: black;
+  border: 1px solid black;
+  background-color: #F8F9FA; */
+  color: var(--color-red-text-sidebar);
+  border: 1px solid var(--color-red-text-sidebar);
+  background-color: #F8F9FA;
+  text-transform: uppercase;
+  font-size: 16px !important;
+  font-weight: 600;
+  padding: 5px 15px;
+}
+
+.button-pagination:hover {
+  color: white;
+  border: 1px solid black;
+  background-color: black;
+  text-transform: uppercase;
+  font-size: 16px !important;
+  font-weight: 600;
+  padding: 5px 15px;
+}
+
+.button-pagination.selected {
   background-color: var(--color-red-text-sidebar);
   color: white;
   border-color: var(--color-red-text-sidebar);
 }
 
-button.next-prev-page:hover {
-  background-color: gray;
-  border: 1px solid gray;
+.button-pagination.previous-page:hover,
+.button-pagination.next-page:hover {
+  background-color: var(--color-red-text-sidebar);
+  border: 1px solid #DEE2E6;
   color: white;
 }
 
-button.next-prev-page {
-  background-color: white;
-  border: 1px solid gray;
-  color: gray;
+.button-pagination.previous-page,
+.button-pagination.next-page {
+  border-radius: 10px 0 0 10px;
+  background-color: #F8F9FA;
+  border: 1px solid var(--color-red-text-sidebar);
+  color: var(--color-red-text-sidebar);
 }
 
-button:disabled,
-button:disabled:hover {
-  background-color: white;
-  color: gray;
-  border: 1px solid gray;
+.button-pagination.next-page {
+  border-radius: 0 10px 10px 0;
+  background-color: F8F9FA;
+  border: 1px solid var(--color-red-text-sidebar);
+  color: var(--color-red-text-sidebar);
 }
+
+.button-pagination:disabled,
+.button-pagination:disabled:hover {
+  background-color: #DEE2E6;
+  color: #6C757D;
+  border: 1px solid #DEE2E6;
+}
+
 /* --------------- Fine pulsanti della paginazione: da aggiungere eventualmente in un suo module.css --------------- */

@@ -37,7 +37,7 @@ function Pagination({ currentPage, lastPage, onPageChange }) {
             {/* MOBILE: visualizzo solo i due pulsanti di navigazione. Con d-md-none nascondo gli altri dispositivi*/}
             <div className="d-md-none d-flex gap-2">
                 <button
-                    className="button"
+                    className="button-pagination"
                     disabled={currentPage === 1}
                     onClick={() => goTo(currentPage - 1)}
                 >
@@ -45,7 +45,7 @@ function Pagination({ currentPage, lastPage, onPageChange }) {
                 </button>
                 <span className="align-self-center">Pagina {currentPage} di {lastPage}</span>
                 <button
-                    className="button"
+                    className="button-pagination"
                     disabled={currentPage === lastPage}
                     onClick={() => goTo(currentPage + 1)}
                 >
@@ -56,19 +56,19 @@ function Pagination({ currentPage, lastPage, onPageChange }) {
             {/* DESKTOP: numeri + icone frecce. Con d-none escludo la visualizzazione ai dispositivi small quali gli smartphone */}
             <div className="d-none d-md-flex gap-2 flex-wrap">
                 {/* Vai alla prima */}
-                <button className="button next-prev-page" disabled={currentPage === 1} onClick={() => goTo(1)}>
+                <button className="button-pagination previous-page" disabled={currentPage === 1} onClick={() => goTo(1)}>
                     {/* Icona Bootstrap sinistra */}
                     <i className="bi bi-chevron-double-left"></i>
                 </button>
                 {/* Pagina precedente */}
-                <button className="button next-prev-page" disabled={currentPage === 1} onClick={() => goTo(currentPage - 1)}>
+                <button className="button-pagination previous-page" disabled={currentPage === 1} onClick={() => goTo(currentPage - 1)}>
                     <i className="bi bi-chevron-left"></i>
                 </button>
 
                 {getPages().map((page, i) => (
                     <button
                         key={i}
-                        className={`button ${page === currentPage ? "selected" : "button"}`}
+                        className={`button-pagination ${page === currentPage ? "selected" : "button-pagination"}`}
                         disabled={page === "..."}
                         onClick={() => goTo(page)}
                     >
@@ -77,11 +77,11 @@ function Pagination({ currentPage, lastPage, onPageChange }) {
                 ))}
 
                 {/* Pagina successiva */}
-                <button className="button next-prev-page" disabled={currentPage === lastPage} onClick={() => goTo(currentPage + 1)}>
+                <button className="button-pagination next-page" disabled={currentPage === lastPage} onClick={() => goTo(currentPage + 1)}>
                     <i className="bi bi-chevron-right"></i>
                 </button>
                 {/* Vai all'ultima pagina */}
-                <button className="button next-prev-page" disabled={currentPage === lastPage} onClick={() => goTo(lastPage)}>
+                <button className="button-pagination next-page" disabled={currentPage === lastPage} onClick={() => goTo(lastPage)}>
                     <i className="bi bi-chevron-double-right"></i>
                 </button>
             </div>
