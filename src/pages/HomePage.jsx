@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useGlobalContext } from "../contexts/GlobalContext";
+import { useGlobalContext } from "../contexts/GlobalContext";   // importo il GlobalContext
 import axios from "axios";
 // import { Card } from "react-bootstrap";
 import Card from "../components/Card";
@@ -9,7 +9,7 @@ const apiUrl = import.meta.env.VITE_API_URL;
 const movieEndPoint = "/movies";
 
 function MainComponent() {
-    // Destrutturo useGlobalContext da cui prelevo le variabili di stato movies, currentPage, lastPage e la funzione che richiama axios per l'API di tutti i film:
+    // Destrutturo useGlobalContext da cui prelevo le variabili di stato movies, currentPage, lastPage e la funzione getMovies() che richiama axios per l'API di tutti i film:
     const { movies, currentPage, setCurrentPage, lastPage, getMovies } = useGlobalContext();
     // const [movies, setMovies] = useState([]);
     // const [currentPage, setCurrentPage] = useState(1);

@@ -13,8 +13,10 @@ const GlobalContext = createContext();  //creo il Context e gli do il nome Globa
 // Per creare un Provider dobbiamo passare i children ai componenti figli (i componenti che consumeranno i dati che gli passeremo):
 const GlobalProvider = ({ children }) => {
     // Stati del Provider accessibili ai componenti Consumer che inizializzo a zero:
-    // useState dei film:
+    // useState di tutti i film:
     const [movies, setMovies] = useState([]);
+    // useState del singolo film:
+    const [movie, setMovie] = useState(null); // Variabile di stato contenente il singolo film con quello slug :slug (se esistente) ottenuto dalla chiamata axios
     /* --------------- Variabili di stato per la paginazione --------------- */
     const [currentPage, setCurrentPage] = useState(1);
     const [lastPage, setLastPage] = useState(null);
@@ -51,6 +53,32 @@ const GlobalProvider = ({ children }) => {
             });
     }
 
+    /* Funzione che richiama l'API per la visualizzazione del singolo film e dei vari dettagli */
+    function getMovie(slug, navigate) {
+        axios.get(apiUrl + "/movies/" + slug)
+            .then((res) => {
+                // console.log(res);
+                // console.log(res.data);
+                // console.log(res.data.data);
+                setMovie(res.data.data);
+            }).catch((error) => {
+                console.log(error);
+                // console.log("Errore status: " + error.status);
+                // console.log("Errore response: " + error.response.status);
+                // Se lo status dell'errore è 404 allora reindirizza alla NotFoundPage ( si poteva inserire anche: navigate("/url-inesistente"); )
+                if (error.response?.status === 404) {
+                    // L'istruzione di sopra indica: Se response esiste (grazie al "?"), controlla response.status se è 404. Se response non esiste, restituisce undefined quindi il confronto undefined === 404 è false, e il blocco if non si esegue
+                    console.log("Slug del movie Not found");
+                    // Se inserisco uno slug non esistente reindirizzo l'utente alla rotta "/error" che non esiste, 
+                    // quindi automaticamente verrò reindirizzato alla pagina NotFoundPage.jsx
+                    // In questo modo gestisco ed evito la visualizzazione della pagina dei dettagli per un film con slug inesistente:
+                    navigate("/error");
+                }
+            }).finally(() => {
+                console.log("Finito");
+            });
+    }
+
     function search() {
         setCurrentPage(1);
         getMovies(1);
@@ -62,12 +90,15 @@ const GlobalProvider = ({ children }) => {
     // Oggetto contenente i dati da passare al value per offrirli ai Consumer (i componenti racchiusi nel Provider di GLobalContext)
     // ovvero lo useState movies e la funzione search
     const collectionData = {
+        movie,
         movies,
+        setMovie,
         setMovies,
         currentPage,
         setCurrentPage,
         lastPage,
         setLastPage,
+        getMovie,
         getMovies
     }
 
