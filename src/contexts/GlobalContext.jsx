@@ -23,7 +23,7 @@ const GlobalProvider = ({ children }) => {
     /* --------------- Fine variabili di stato per la paginazione --------------- */
 
     // variabile di stato per il Loader:
-    // const [isLoading, setIsLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
 
     // variabile di stato che controlla se è stata eseguita una ricerca (inizialmente impostata a false)
     const [isSearching, setIsSearching] = useState(false);
@@ -35,20 +35,28 @@ const GlobalProvider = ({ children }) => {
 
     /* Funzione che richiama l'API per la visualizzazione di tutti i film */
     // axios.get(`${apiUrl}${movieEndPoint}?page=${page}`)     //avrei potuto usare anche questa chiamata axios al posto di quella di seguito
-    function getMovies(page = 1) {
+    function getMovies(page = 1, query) {
+
+        // Al caricamento dei film setto la variabile di stato isLoading a true, così da permettere la visualizzazione del componente <Loader />
+        setIsLoading(true);
+
         // axios.get(`${apiUrl}${movieEndPoint}?page=${page}`)     //avrei potuto usare anche questa chiamata axios al posto di quella di seguito
-        axios.get(apiUrl + movieEndPoint, { params: { page } })
+        // IMPORTANTE: axios gestisce da solo con l’opzione params, quindi non ho bisogno di specificare la sua chiave valore come ad esempio:
+        // params: {page: page, title: query} ma è sufficiente solo passare le variabili necessare come di seguito:
+        axios.get(apiUrl + movieEndPoint, { params: { page, query } })
             .then((res) => {
                 setMovies(res.data.results.data);
                 setCurrentPage(res.data.results.current_page);
                 setLastPage(res.data.results.last_page);
 
                 console.log(res.data.results.data);
+                setIsLoading(false);    // Una volta completato il caricamento setto la variabile di stato isLoading a false così da nascondere il componente <Loader />
             })
             .catch((err) => {
                 console.log(err);
             })
             .finally(() => {
+                setIsLoading(false);    // Per sicurezza setto anche qui a false la variabile di stato isLoading per nascondere il componente <Loader /> a caricamento avvenuto
                 console.log("Finito");
             });
     }
@@ -79,9 +87,10 @@ const GlobalProvider = ({ children }) => {
             });
     }
 
-    function search() {
+    // Funzione richiamata al pulsante Cerca... presente nell'Header del sito
+    function search(query) {
         setCurrentPage(1);
-        getMovies(1);
+        getMovies(1, query);
         // Imposto la variabile di stato isSearching a true perchè se quando richiamo search significa che è stata fatta una ricerca
         setIsSearching(true);
 
@@ -99,7 +108,10 @@ const GlobalProvider = ({ children }) => {
         lastPage,
         setLastPage,
         getMovie,
-        getMovies
+        getMovies,
+        search,
+        isSearching,
+        isLoading
     }
 
     return (
