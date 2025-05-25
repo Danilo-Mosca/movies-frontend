@@ -1,21 +1,14 @@
 import { useState, useEffect } from "react";
 import { useGlobalContext } from "../contexts/GlobalContext";   // importo il GlobalContext
-import axios from "axios";
 // import { Card } from "react-bootstrap";
 import Card from "../components/Card";
 import Pagination from "../components/Pagination";
 import { FaSadTear } from "react-icons/fa";     // importo un'icona per il messaggio personalizzato di nessun risultato trovato per la ricerca
 import Loader from "../components/Loader";
 
-const apiUrl = import.meta.env.VITE_API_URL;
-const movieEndPoint = "/movies";
-
 function HomePage() {
     // Destrutturo useGlobalContext da cui prelevo le variabili di stato movies, currentPage, lastPage e la funzione getMovies() che richiama axios per l'API di tutti i film:
     const { movies, currentPage, lastPage, getMovies, isSearching, isLoading } = useGlobalContext();
-    // const [movies, setMovies] = useState([]);
-    // const [currentPage, setCurrentPage] = useState(1);
-    // const [lastPage, setLastPage] = useState(null);
 
     // useEffect per al primo caricamento e per il cambio pagina:
     useEffect(() => {
@@ -25,10 +18,12 @@ function HomePage() {
     return (
         <main className="container py-3">
 
+            {/* LOADER */}
             {/* Se la variabile di stato isLoading è true, allora visualizzo il componente Loader con l'icona di caricamento, altrimenti nulla */}
             {isLoading && <Loader />}
-
-            { }
+            {/* FINE LOADER */}
+            
+            {/* COMPONENTE PAGINATION MOBILE */}
             {/* In versione mobile aggiungo la paginazione sia in alto qui: */}
             <div className="d-md-none d-flex gap-2 pb-3">
                 <Pagination
@@ -37,6 +32,7 @@ function HomePage() {
                     onPageChange={(page) => getMovies(page)}
                 />
             </div>
+            {/* END COMPONENTE PAGINATION MOBILE */}
 
             <div className="row gy-4">
                 {/* Controllo la lunghezza di movies per vedere se ritorna risultati, utile nella search dell'header nel caso in cui questa non ritornasse risultati allora mostro un messaggio personalizzato.
@@ -69,13 +65,14 @@ function HomePage() {
                 }
             </div>
 
-            {/* Componente Pagination */}
+            {/* COMPONENTE PAGINATION DESKTOP */}
             {/* In versione mobile aggiungo la paginazione sia in alto come sopra che in basso come qui: */}
             <Pagination
                 currentPage={currentPage}
                 lastPage={lastPage}
                 onPageChange={(page) => getMovies(page)}
             />
+            {/* END COMPONENTE PAGINATION DESKTOP */}
 
         </main>
     );

@@ -93,7 +93,6 @@ const GlobalProvider = ({ children }) => {
         getMovies(1, query);
         // Imposto la variabile di stato isSearching a true perchè se quando richiamo search significa che è stata fatta una ricerca
         setIsSearching(true);
-
     }
 
     // Oggetto contenente i dati da passare al value per offrirli ai Consumer (i componenti racchiusi nel Provider di GLobalContext)
