@@ -37,41 +37,35 @@ export default function MoviesSearch() {
                 {/* END COMPONENTE PAGINATION MOBILE */}
 
                 <div className="row gy-4">
-                    <div className="debug col-sm-12 col-md-3">
+                    <div className="col-sm-12 col-md-3">
                         <p>Search bar</p>
                     </div>
 
-                    <div className="debug col-sm-12 col-md-9">
-                        {/* Controllo la lunghezza di movies per vedere se ritorna risultati, utile nella search dell'header nel caso in cui questa non ritornasse risultati allora mostro un messaggio personalizzato.
-                        IMPORTANTE: eseguo un altro confronto con la variabile di stato "isSearching" importata dal GlobalContext perchè mi servirà come messaggio personalizzato al primo caricamento, ovvero quando viene montata la pagina HomePage.jsx */}
-                        {movies.length === 0 && isSearching ?
-                            (<div className="text-center w-100 mt-5">
+                    <div className="col-sm-12 col-md-9">
+                        {/* Controllo la lunghezza di movies per vedere se ritorna risultati, utile nella search dell'header nel caso in cui questa non ritornasse risultati allora mostro un messaggio personalizzato */}
+                        {movies.length === 0 ? (
+                            <div className="text-center w-100 mt-5">
                                 <FaSadTear size={64} className="text-secondary mb-3" />
                                 <div className="d-flex justify-content-center align-items-center flex-column flex-sm-row">
-                                    <img src="/src/assets/img/search-no-results.png" alt="Nessun risultato trovato" className="mb-3 m-3" style={{ maxWidth: "200px" }} />
-                                    <h5 className="m-3">Nessuno risultato trovato per la tua ricerca!</h5>
+                                    <img
+                                        src="/src/assets/img/search-no-results.png"
+                                        alt="Nessun risultato trovato"
+                                        className="mb-3 m-3"
+                                        style={{ maxWidth: "200px" }}
+                                    />
+                                    <h5 className="m-3">Nessun film trovato.</h5>
                                 </div>
-                                <p className="text-muted">Prova con qualcos'altro!</p>
+                                <p className="text-muted">Prova con un'altra parola chiave o modifica i filtri.</p>
                             </div>
-                            )
-                            : (movies.length === 0 && !isSearching ?
-                                (
-                                    <div className="text-center w-100 mt-5">
-                                        <h2>Caricamento in corso o nessun film disponibile.</h2>
+                        ) : (
+                            <div className="row">
+                                {movies.map((movie) => (
+                                    <div className="col-12 col-md-4 col-lg-3" key={movie.id}>
+                                        <Card data={movie} />
                                     </div>
-                                )
-                                :
-                                (
-                                    <div className="row">
-                                        {movies.map((movie) => (
-                                            <div className="col-12 col-md-4 col-lg-3" key={movie.id}>
-                                                <Card data={movie} />
-                                            </div>
-                                        ))}
-                                    </div>
-                                )
-                            )
-                        }
+                                ))}
+                            </div>
+                        )}
                     </div>
                 </div>
 

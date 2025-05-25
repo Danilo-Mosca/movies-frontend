@@ -12,7 +12,10 @@ function HomePage() {
 
     // useEffect per al primo caricamento e per il cambio pagina:
     useEffect(() => {
-        getMovies(1);
+        // Se ho già eseguito una ricerca, evito di richiamare getMovies() così da non sovrascrivere i risultati precedenti:
+        if (!isSearching) {
+            getMovies(1);
+        }
     }, []);
 
     return (
@@ -22,7 +25,7 @@ function HomePage() {
             {/* Se la variabile di stato isLoading è true, allora visualizzo il componente Loader con l'icona di caricamento, altrimenti nulla */}
             {isLoading && <Loader />}
             {/* FINE LOADER */}
-            
+
             {/* COMPONENTE PAGINATION MOBILE */}
             {/* In versione mobile aggiungo la paginazione sia in alto qui: */}
             <div className="d-md-none d-flex gap-2 pb-3">

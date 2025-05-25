@@ -3,7 +3,7 @@ import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import { NavLink } from 'react-router-dom';
+import { useNavigate, NavLink } from 'react-router-dom';
 
 // Importo il CSS Modules dell'header:
 import style from "./Header.module.css";
@@ -15,6 +15,8 @@ import { useGlobalContext } from '../contexts/GlobalContext';
 function Header() {
     const { search } = useGlobalContext();    // richiamo e destrutturo il metodo search del GlobalContext
     const [querySelected, setQuerySelected] = useState("");     // variabile di stato che conterrà il valore inserito nel form della search nell'header
+    // Mi creo la costante navigate e le assegno l'hook di useNavigate per permettere la reindirizzazione dell'utente alla pagina da noi desiderata
+    const navigate = useNavigate();     // importa useNavigate
 
     /* Funzione richiamata ogni volta che si inserisce del testo nella input search */
     function handleInput(event) {
@@ -26,7 +28,8 @@ function Header() {
     function handleSearch(event) {
         event.preventDefault();     // prevenisco il ricaricamento della pagina
         // Al click sul pulsante assegno il valore della variabile di stato querySelected al GlobalContext
-        search(querySelected);
+        search(querySelected);        // Eseguo la ricerca
+        navigate("/");                // e poi reindirizzo l'utente alla homepage se questo ha eseguito una ricerca dal pulsante cerca nell'header
     }
 
     return (
