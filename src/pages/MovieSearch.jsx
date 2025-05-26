@@ -3,20 +3,34 @@ import { useGlobalContext } from "../contexts/GlobalContext";   // importo il Gl
 // import { Card } from "react-bootstrap";
 import Card from "../components/Card";
 import Pagination from "../components/Pagination";
+import { useLocation } from "react-router-dom";
 import { FaSadTear } from "react-icons/fa";     // importo un'icona per il messaggio personalizzato di nessun risultato trovato per la ricerca
 import Loader from "../components/Loader";
 
 export default function MoviesSearch() {
     // Destrutturo useGlobalContext da cui prelevo le variabili di stato movies, currentPage, lastPage e la funzione getMovies() che richiama axios per l'API di tutti i film:
     const { movies, currentPage, lastPage, totalPage, getMovies, isSearching, isLoading } = useGlobalContext();
+    const location = useLocation();     // hook che fornisce informazioni sull’URL attuale
+    // URLSearchParams è una classe JavaScript nativa che permette di leggere e gestire i parametri della query string. Mi creo un oggetto "queryParams" da cui estraggo i valori dei parametri
+    // location.search restituisce la query string, ad esempio: "?query=Matrix"
+    const queryParams = new URLSearchParams(location.search);
+    console.log("queryParams: " + queryParams);
+    // queryParams.get("query") restituisce il valore del parametro query presente nell'URL (es. "Matrix")
+    // Se non esiste(null), allora con || "" la variabile "queryFromUrl" diventa una stringa vuota
+    const queryFromUrl = queryParams.get("query") || "";
+    console.log("queryParams: " + queryFromUrl);
 
     // useEffect per al primo caricamento e per il cambio pagina:
     useEffect(() => {
-        // Se ho già eseguito una ricerca, evito di richiamare getMovies() così da non sovrascrivere i risultati precedenti:
-        if (!isSearching) {
+        // Se l’URL contiene una query, allora chiamo la funzione getMovies() passandogli la query con la parola da ricercare:
+        if (queryFromUrl) {
+            getMovies(1, queryFromUrl);
+        }
+            // Altrimenti se non c’è nessuna query nell’URL e non è in corso una ricerca, carico la lista di default dei film
+        else if (!isSearching) {
             getMovies(1);
         }
-    }, []);
+    }, [location.search]);  // rieseguo lo useEffect ogni volta che cambia la query nell'url
 
     return (
         <>
@@ -62,7 +76,14 @@ export default function MoviesSearch() {
                             </div>
                         ) : (
                             <div className="row">
-                                    <h5>{totalPage} film trovati</h5>
+                                <h5>
+                                    <span style={{ color: "#DB2B39", fontSize: "24px", fontWeight: "500" }}>{totalPage}</span> film trovati
+                                    {queryFromUrl !== "" && (
+                                        <>
+                                            &nbsp;per: <span style={{ color: "#DB2B39", fontSize: "24px", fontWeight: "500" }}>"{queryFromUrl}"</span>
+                                        </>
+                                    )}
+                                </h5>
                                 {movies.map((movie) => (
                                     <div className="col-12 col-md-4 col-lg-3" key={movie.id}>
                                         <Card data={movie} />

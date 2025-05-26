@@ -29,7 +29,9 @@ function Header() {
         event.preventDefault();     // prevenisco il ricaricamento della pagina
         // Al click sul pulsante assegno il valore della variabile di stato querySelected al GlobalContext
         search(querySelected);        // Eseguo la ricerca
-        navigate("/movies");                // e poi reindirizzo l'utente alla homepage se questo ha eseguito una ricerca dal pulsante cerca nell'header
+        // E poi reindirizzo l'utente alla pagina di ricerca se questo, in qualunque pagina si trovi, ha eseguito una ricerca dal pulsante cerca nell'header.
+        // Agganciando ad esso la query della ricerca che ho eseguito all’URL, es: /movies?query=Matrix
+        navigate(`/movies?query=${encodeURIComponent(querySelected)}`);
     }
 
     return (

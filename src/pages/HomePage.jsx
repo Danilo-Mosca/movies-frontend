@@ -7,12 +7,12 @@ import { FaSadTear } from "react-icons/fa";     // importo un'icona per il messa
 import Loader from "../components/Loader";
 
 function HomePage() {
-    // Destrutturo useGlobalContext da cui prelevo le variabili di stato movies, currentPage, lastPage e la funzione getMovies() che richiama axios per l'API di tutti i film:
-    const { movies, currentPage, lastPage, totalPage, getMovies, isSearching, isLoading } = useGlobalContext();
+    // Destrutturo useGlobalContext da cui prelevo le variabili di stato movies, currentPage, lastPage e la funzione getAllMovies() che richiama axios per l'API di tutti i film:
+    const { movies, currentPage, lastPage, totalPage, getAllMovies, isSearching, isLoading } = useGlobalContext();
 
     // useEffect per al primo caricamento e per il cambio pagina:
     useEffect(() => {
-            getMovies(1);
+            getAllMovies(1);
     }, [isSearching]);
 
     return (
@@ -29,7 +29,7 @@ function HomePage() {
                 <Pagination
                     currentPage={currentPage}
                     lastPage={lastPage}
-                    onPageChange={(page) => getMovies(page)}
+                    onPageChange={(page) => getAllMovies(page)}
                 />
             </div>
             {/* END COMPONENTE PAGINATION MOBILE */}
@@ -56,7 +56,7 @@ function HomePage() {
                         :
                         (
                             <>
-                                <h5>{totalPage} film trovati</h5>
+                                <h5><span style={{ color: "#DB2B39", fontSize: "24px", fontWeight: "500" }}>{totalPage}</span> film presenti</h5>
                                 {movies.map((movie) => (
                                     <div className="col-12 col-md-4 col-lg-3" key={movie.id}>
                                         <Card data={movie} />
@@ -73,7 +73,7 @@ function HomePage() {
             <Pagination
                 currentPage={currentPage}
                 lastPage={lastPage}
-                onPageChange={(page) => getMovies(page)}
+                onPageChange={(page) => getAllMovies(page)}
             />
             {/* END COMPONENTE PAGINATION DESKTOP */}
 

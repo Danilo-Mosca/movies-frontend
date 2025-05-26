@@ -36,11 +36,34 @@ const GlobalProvider = ({ children }) => {
     }, []);
 
     /* Funzione che richiama l'API per la visualizzazione di tutti i film ricerca */
+    function getAllMovies(page = 1){
+        // Al caricamento dei film setto la variabile di stato isLoading a true, così da permettere la visualizzazione del componente <Loader />
+        setIsLoading(true);
+        // axios.get(`${apiUrl}${movieEndPoint}?page=${page}`)     //avrei potuto usare anche questa chiamata axios al posto di quella di seguito
+        axios.get(apiUrl + movieEndPoint, { params: { page} })
+            .then((res) => {
+                setMovies(res.data.results.data);
+                setCurrentPage(res.data.results.current_page);
+                setLastPage(res.data.results.last_page);
+                setTotalPage(res.data.results.total);
+
+                // console.log(res.data.results.data);
+                setIsLoading(false);    // Una volta completato il caricamento setto la variabile di stato isLoading a false così da nascondere il componente <Loader />
+            })
+            .catch((err) => {
+                console.log(err);
+            })
+            .finally(() => {
+                setIsLoading(false);    // Per sicurezza setto anche qui a false la variabile di stato isLoading per nascondere il componente <Loader /> a caricamento avvenuto
+                console.log("Finito");
+            });
+    }
+
+    /* Funzione che richiama l'API per la visualizzazione dei film ricercati nella search bar dell'header */
     // axios.get(`${apiUrl}${movieEndPoint}?page=${page}`)     //avrei potuto usare anche questa chiamata axios al posto di quella di seguito
     function getMovies(page = 1, query = searchQuery) {
         // Al caricamento dei film setto la variabile di stato isLoading a true, così da permettere la visualizzazione del componente <Loader />
         setIsLoading(true);
-        // axios.get(`${apiUrl}${movieEndPoint}?page=${page}`)     //avrei potuto usare anche questa chiamata axios al posto di quella di seguito
         // IMPORTANTE: axios gestisce da solo con l’opzione params, quindi non ho bisogno di specificare la sua chiave valore come ad esempio:
         // params: {page: page, title: query} ma è sufficiente solo passare le variabili necessare come di seguito:
         axios.get(apiUrl + movieEndPoint, { params: { page, query } })
@@ -109,6 +132,7 @@ const GlobalProvider = ({ children }) => {
         totalPage,
         getMovie,
         getMovies,
+        getAllMovies,
         search,
         isSearching,
         isLoading
