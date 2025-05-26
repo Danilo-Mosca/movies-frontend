@@ -190,7 +190,7 @@ export default function MoviesSearch() {
                                     <span style={{ color: "#DB2B39", fontSize: "24px", fontWeight: "500" }}>{totalPage}</span> film trovati
                                     {queryFromUrl !== "" && (
                                         <>
-                                            &nbsp;per: <span style={{ color: "#DB2B39", fontSize: "24px", fontWeight: "500" }}>"{queryFromUrl}"</span>
+                                                &nbsp;per: <span style={{ color: "#DB2B39", fontSize: "24px", fontWeight: "500" }}>{'"' + queryFromUrl + '"'}</span>
                                         </>
                                     )}
                                 </h5>

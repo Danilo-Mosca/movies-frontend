@@ -2,7 +2,7 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { useGlobalContext } from "../contexts/GlobalContext";   // importo il GlobalContext
-import CardSingleMovie from "../components/CardSingleMovie";
+import CardMovieDetails from "../components/CardMovieDetails";
 
 export default function MovieDetails() {
     // Funzione che restituisce un oggetto con tutti i parametri dinamici dell'URL, in questo caso lo slug
@@ -27,7 +27,7 @@ export default function MovieDetails() {
 
                 {/* Se il film non è null, cioè esiste, allora ritorno l'immagine e la descrizione dello stesso richiamando il componente CardSingleMovie */}
                 {movie && (
-                    <CardSingleMovie data={movie} />
+                    <CardMovieDetails data={movie} />
                 )}
             </section >
         </>

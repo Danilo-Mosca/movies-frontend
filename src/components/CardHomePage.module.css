@@ -1,0 +1,93 @@
+/* Style CSS Modules del componente Card */
+
+.cardWrapper {
+    aspect-ratio: 1/1.5;
+    position: relative;
+    overflow: hidden;
+
+
+}
+
+/* Involucro contenente i dettagli della card */
+.cardInner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    color: white;
+    z-index: 2;
+    opacity: 0;
+    transition: all 0.5s;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+}
+
+.cardImg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.cardEffect {
+    cursor: pointer;
+    transition: all 0.8s;
+    position: relative;
+}
+
+.cardEffect:hover {
+    scale: 1.05;
+    /* All'hover sulla card imposto uno z-index maggiore di quello dell' header per mostrare la card sopra la navbar del menu quando questa viene evidenziata: */
+    z-index: 3001;
+}
+
+/* All'hover sulla card assegno l'opacità a 1 per mostrare il contenuto: */
+.cardEffect:hover .cardInner {
+    opacity: 1;
+}
+
+.isActive {
+    border: 5px solid red;
+}
+
+/* Larghezza bandiere lingua */
+.flag {
+    width: 45px;
+}
+
+.cardStar {
+    color: #ffd700;
+}
+
+.btn-card {
+    border-radius: 0px;
+    color: white;
+    border: 2px solid white;
+    background-color: black;
+    text-transform: uppercase;
+    font-size: 16px !important;
+    font-weight: 600;
+    padding: 5px 15px;
+}
+
+.btn-card:hover {
+    color: white;
+    border: 1px solid #4f040a;
+    background-color: #90030f;
+    text-transform: uppercase;
+    font-size: 16px !important;
+    font-weight: 800;
+    padding: 5px 15px;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px !important;
+    font-weight: 600;
+        /* text-transform: none; */
+}

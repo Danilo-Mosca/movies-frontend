@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useGlobalContext } from "../contexts/GlobalContext";   // importo il GlobalContext
 // import { Card } from "react-bootstrap";
-import Card from "../components/Card";
+import CardHomePage from "../components/CardHomePage";
 import Pagination from "../components/Pagination";
 import { FaSadTear } from "react-icons/fa";     // importo un'icona per il messaggio personalizzato di nessun risultato trovato per la ricerca
 import Loader from "../components/Loader";
@@ -50,7 +50,7 @@ function HomePage() {
                     : (movies.length === 0 && !isSearching ?
                         (
                             <div className="text-center w-100 mt-5">
-                                <h2>Caricamento in corso o nessun film disponibile.</h2>
+                                <h2>Caricamento in corso... nessun film disponibile.</h2>
                             </div>
                         )
                         :
@@ -59,7 +59,7 @@ function HomePage() {
                                 <h5><span style={{ color: "#DB2B39", fontSize: "24px", fontWeight: "500" }}>{totalPage}</span> film presenti</h5>
                                 {movies.map((movie) => (
                                     <div className="col-12 col-md-4 col-lg-3" key={movie.id}>
-                                        <Card data={movie} />
+                                        <CardHomePage data={movie} />
                                     </div>
                                 ))}
                             </>
