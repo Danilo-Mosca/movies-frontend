@@ -8,11 +8,14 @@ import Loader from "../components/Loader";
 
 export default function MoviesSearch() {
     // Destrutturo useGlobalContext da cui prelevo le variabili di stato movies, currentPage, lastPage e la funzione getMovies() che richiama axios per l'API di tutti i film:
-    const { movies, currentPage, lastPage, getMovies, isSearching, isLoading } = useGlobalContext();
+    const { movies, currentPage, lastPage, totalPage, getMovies, isSearching, isLoading } = useGlobalContext();
 
     // useEffect per al primo caricamento e per il cambio pagina:
     useEffect(() => {
-        getMovies(1);
+        // Se ho già eseguito una ricerca, evito di richiamare getMovies() così da non sovrascrivere i risultati precedenti:
+        if (!isSearching) {
+            getMovies(1);
+        }
     }, []);
 
     return (
@@ -59,6 +62,7 @@ export default function MoviesSearch() {
                             </div>
                         ) : (
                             <div className="row">
+                                    <h5>{totalPage} film trovati</h5>
                                 {movies.map((movie) => (
                                     <div className="col-12 col-md-4 col-lg-3" key={movie.id}>
                                         <Card data={movie} />

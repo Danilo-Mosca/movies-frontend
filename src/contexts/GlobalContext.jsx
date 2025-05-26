@@ -19,27 +19,27 @@ const GlobalProvider = ({ children }) => {
     const [movie, setMovie] = useState(null); // Variabile di stato contenente il singolo film con quello slug :slug (se esistente) ottenuto dalla chiamata axios
     /* --------------- Variabili di stato per la paginazione --------------- */
     const [currentPage, setCurrentPage] = useState(1);
-    const [lastPage, setLastPage] = useState(null);
+    const [lastPage, setLastPage] = useState(1);
+    const [totalPage, setTotalPage] = useState(0);
+    const [searchQuery, setSearchQuery] = useState("");
     /* --------------- Fine variabili di stato per la paginazione --------------- */
 
     // variabile di stato per il Loader:
     const [isLoading, setIsLoading] = useState(false);
+    // searchQuery è una stringa vuota "" inizialmente, quindi: !!searchQuery; -> false
+    // se invece searchQuery è una stringa non vuota, allora:   !!"qualcosa" è true
+    // Quindi isSearching indica se è attiva una ricerca, cioè se la query non è vuota.
+    const isSearching = !!searchQuery;
 
-    // variabile di stato che controlla se è stata eseguita una ricerca (inizialmente impostata a false)
-    const [isSearching, setIsSearching] = useState(false);
+    useEffect(() => {
+        getMovies();
+    }, []);
 
-
-
-
-
-
-    /* Funzione che richiama l'API per la visualizzazione di tutti i film */
+    /* Funzione che richiama l'API per la visualizzazione di tutti i film ricerca */
     // axios.get(`${apiUrl}${movieEndPoint}?page=${page}`)     //avrei potuto usare anche questa chiamata axios al posto di quella di seguito
-    function getMovies(page = 1, query) {
-
+    function getMovies(page = 1, query = searchQuery) {
         // Al caricamento dei film setto la variabile di stato isLoading a true, così da permettere la visualizzazione del componente <Loader />
         setIsLoading(true);
-
         // axios.get(`${apiUrl}${movieEndPoint}?page=${page}`)     //avrei potuto usare anche questa chiamata axios al posto di quella di seguito
         // IMPORTANTE: axios gestisce da solo con l’opzione params, quindi non ho bisogno di specificare la sua chiave valore come ad esempio:
         // params: {page: page, title: query} ma è sufficiente solo passare le variabili necessare come di seguito:
@@ -48,8 +48,9 @@ const GlobalProvider = ({ children }) => {
                 setMovies(res.data.results.data);
                 setCurrentPage(res.data.results.current_page);
                 setLastPage(res.data.results.last_page);
+                setTotalPage(res.data.results.total);
 
-                console.log(res.data.results.data);
+                // console.log(res.data.results.data);
                 setIsLoading(false);    // Una volta completato il caricamento setto la variabile di stato isLoading a false così da nascondere il componente <Loader />
             })
             .catch((err) => {
@@ -90,9 +91,8 @@ const GlobalProvider = ({ children }) => {
     // Funzione richiamata al pulsante Cerca... presente nell'Header del sito
     function search(query) {
         setCurrentPage(1);
+        setSearchQuery(query);     // salva la query nello stato
         getMovies(1, query);
-        // Imposto la variabile di stato isSearching a true perchè se quando richiamo search significa che è stata fatta una ricerca
-        setIsSearching(true);
     }
 
     // Oggetto contenente i dati da passare al value per offrirli ai Consumer (i componenti racchiusi nel Provider di GLobalContext)
@@ -106,6 +106,7 @@ const GlobalProvider = ({ children }) => {
         setCurrentPage,
         lastPage,
         setLastPage,
+        totalPage,
         getMovie,
         getMovies,
         search,

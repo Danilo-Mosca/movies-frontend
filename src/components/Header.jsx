@@ -29,7 +29,7 @@ function Header() {
         event.preventDefault();     // prevenisco il ricaricamento della pagina
         // Al click sul pulsante assegno il valore della variabile di stato querySelected al GlobalContext
         search(querySelected);        // Eseguo la ricerca
-        navigate("/");                // e poi reindirizzo l'utente alla homepage se questo ha eseguito una ricerca dal pulsante cerca nell'header
+        navigate("/movies");                // e poi reindirizzo l'utente alla homepage se questo ha eseguito una ricerca dal pulsante cerca nell'header
     }
 
     return (
@@ -60,8 +60,9 @@ function Header() {
                                     className="me-2"
                                     aria-label="Search"
                                     name="query"
-                                    id="query"
+                                    id={style.query}
                                     onChange={handleInput}
+                                    // style={{ borderRadius: '0px' }}
                                 />
                                 <Button type="submit" className={style.searchButton}>Cerca</Button>
                             </Form>

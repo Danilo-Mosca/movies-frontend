@@ -82,3 +82,7 @@ header {
     border: 2px solid white;
     background-color: #90030f !important;
 }
+
+#query {
+    border-radius: 0;
+}
