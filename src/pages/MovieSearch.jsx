@@ -175,7 +175,7 @@ export default function MoviesSearch() {
                                 <FaSadTear size={64} className="text-secondary mb-3" />
                                 <div className="d-flex justify-content-center align-items-center flex-column flex-sm-row">
                                     <img
-                                        src="/src/assets/img/search-no-results.png"
+                                        src="/img/search-no-results.png"
                                         alt="Nessun risultato trovato"
                                         className="mb-3 m-3"
                                         style={{ maxWidth: "200px" }}

@@ -31,7 +31,7 @@ function CardHomePage({ data }) {
                 src={data.poster !== null ?
                     posterUrl + "/" + data.poster
                     :
-                    `/img/flags/poster-placeholder.png`}
+                    `/img/poster-placeholder.webp`}
                 className={`card-img-top ${style.cardImg}`}
                 alt={data.title}
             />
@@ -40,7 +40,7 @@ function CardHomePage({ data }) {
                 <h5 className="card-title">{data.title}</h5>
                 <p className="card-text">{data.description}</p>
                 <div className="card-text">Regista:</div>
-                <p className="card-text">{data.director.first_name}&nbsp;{data.director.last_name}</p>
+                <p className="card-text">{data.director_id !== null ? `${data.director.first_name} ${data.director.last_name}` : "Regista non inserito"}</p>
                 <div className="card-text">Nazionalità:</div>
                 <div className="card-text text-uppercase">{data.nationality}</div>
                 <div>Media recensioni:</div>
