@@ -17,6 +17,7 @@ const GlobalProvider = ({ children }) => {
     const [movies, setMovies] = useState([]);
     // useState del singolo film:
     const [movie, setMovie] = useState(null); // Variabile di stato contenente il singolo film con quello slug :slug (se esistente) ottenuto dalla chiamata axios
+    const [genresList, setGenresList] = useState([]);   // Stato per lista generi dal backend
     /* --------------- Variabili di stato per la paginazione --------------- */
     const [currentPage, setCurrentPage] = useState(1);
     const [lastPage, setLastPage] = useState(1);
@@ -59,14 +60,34 @@ const GlobalProvider = ({ children }) => {
             });
     }
 
+    /* Funzione che richiama l'API http://127.0.0.1:8000/api/genres per restituire tutti i generi presenti e poterli poi riempire nella <select> della pagina di ricerca avanzata */
+    function getAllGenres(){
+        axios.get(apiUrl + "/genres")
+            .then((res) => {
+                setGenresList(res.data.genres);
+                console.log(res.data.genres);
+            })
+            .catch((err) => {
+                console.log(err);
+            })
+            .finally(() => {
+                console.log("Generi caricati");
+            });
+    }
+
     /* Funzione che richiama l'API per la visualizzazione dei film ricercati nella search bar dell'header */
     // axios.get(`${apiUrl}${movieEndPoint}?page=${page}`)     //avrei potuto usare anche questa chiamata axios al posto di quella di seguito
-    function getMovies(page = 1, query = searchQuery) {
+    function getMovies(page = 1, filters = {}) {
         // Al caricamento dei film setto la variabile di stato isLoading a true, così da permettere la visualizzazione del componente <Loader />
         setIsLoading(true);
         // IMPORTANTE: axios gestisce da solo con l’opzione params, quindi non ho bisogno di specificare la sua chiave valore come ad esempio:
         // params: {page: page, title: query} ma è sufficiente solo passare le variabili necessare come di seguito:
-        axios.get(apiUrl + movieEndPoint, { params: { page, query } })
+        axios.get(apiUrl + movieEndPoint, {
+            params: {
+                page,
+                ...filters,
+            }
+        })
             .then((res) => {
                 setMovies(res.data.results.data);
                 setCurrentPage(res.data.results.current_page);
@@ -123,6 +144,7 @@ const GlobalProvider = ({ children }) => {
     const collectionData = {
         movie,
         movies,
+        genresList,
         setMovie,
         setMovies,
         currentPage,
@@ -133,6 +155,7 @@ const GlobalProvider = ({ children }) => {
         getMovie,
         getMovies,
         getAllMovies,
+        getAllGenres,
         search,
         isSearching,
         isLoading
