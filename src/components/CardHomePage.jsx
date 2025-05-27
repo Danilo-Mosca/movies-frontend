@@ -42,9 +42,10 @@ function CardHomePage({ data }) {
                 <div className="card-text">Regista:</div>
                 <p className="card-text">{data.director_id !== null ? `${data.director.first_name} ${data.director.last_name}` : "Regista non inserito"}</p>
                 <div className="card-text">Nazionalità:</div>
-                <div className="card-text text-uppercase">{data.nationality}</div>
+                <p className="card-text  text-uppercase">{data.nationality !== null ? `${data.nationality}` : "Nazionalità non inserita"}</p>
                 <div>Media recensioni:</div>
-                <div className={style.cardStar}>{drawStars()}</div>
+                {data.rating !== null ? <div className={style.cardStar}>{drawStars()}</div> : "Media assente"}
+                
                 <button className={`mt-3 ${style["btn-card"]}`}><Link to={`/movies/${data.slug}`}>Dettagli</Link></button>
             </div>
         </div>

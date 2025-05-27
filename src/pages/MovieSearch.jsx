@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useGlobalContext } from "../contexts/GlobalContext";   // importo il GlobalContext
-import Card from "../components/Card";
+import CardSearchPage from "../components/CardSearchPage";
 import Pagination from "../components/Pagination";
 import { useLocation, useNavigate } from "react-router-dom";
 import { FaSadTear } from "react-icons/fa";     // importo un'icona per il messaggio personalizzato di nessun risultato trovato per la ricerca
@@ -111,7 +111,7 @@ export default function MoviesSearch() {
 
                 <div className="row gy-4">
                     <div className="col-sm-12 col-md-3">
-                        <p>Search bar</p>
+                        <p style={{fontWeight: "500"}}>Form di ricerca</p>
 
                         {/* INPUT FILTRO TITOLO */}
                         <input
@@ -119,16 +119,16 @@ export default function MoviesSearch() {
                             placeholder="Titolo film"
                             value={filters.query}
                             onChange={(e) => handleFilterChange("query", e.target.value)}
-                            className="form-control mb-2"
+                            className="form-control mb-2 filter-form"
                         />
 
                         {/* INPUT FILTRO GENERE */}
-                        <label htmlFor="genreSelect">Genere</label>
+                        <label htmlFor="genreSelect" style={{ fontWeight: "500" }}>Seleziona un genere:</label>
                         <select
                             id="genreSelect"
                             value={filters.genre}
                             onChange={(e) => handleFilterChange("genre", e.target.value)}
-                            className="form-control mb-2"
+                            className="form-control mb-2 filter-form"
                         >
                             <option value="">Tutti i generi</option>
                             {genresList.map((genre) => (
@@ -144,7 +144,7 @@ export default function MoviesSearch() {
                             placeholder="Regista"
                             value={filters.director}
                             onChange={(e) => handleFilterChange("director", e.target.value)}
-                            className="form-control mb-2"
+                            className="form-control mb-2 filter-form"
                         />
 
                         {/* INPUT FILTRO ATTORE */}
@@ -153,7 +153,7 @@ export default function MoviesSearch() {
                             placeholder="Attore"
                             value={filters.actor}
                             onChange={(e) => handleFilterChange("actor", e.target.value)}
-                            className="form-control mb-2"
+                            className="form-control mb-2 filter-form"
                         />
 
                         {/* INPUT FILTRO ANNO */}
@@ -162,7 +162,7 @@ export default function MoviesSearch() {
                             placeholder="Anno uscita"
                             value={filters.year}
                             onChange={(e) => handleFilterChange("year", e.target.value)}
-                            className="form-control mb-2"
+                            className="form-control mb-2 filter-form"
                             min="1901"
                             max={new Date().getFullYear()}
                         />
@@ -195,8 +195,8 @@ export default function MoviesSearch() {
                                     )}
                                 </h5>
                                 {movies.map((movie) => (
-                                    <div className="col-12 col-md-4 col-lg-3" key={movie.id}>
-                                        <Card data={movie} />
+                                    <div className="col-12 col-md-6 col-lg-4 mb-3" key={movie.id}>
+                                        <CardSearchPage data={movie} />
                                     </div>
                                 ))}
                             </div>

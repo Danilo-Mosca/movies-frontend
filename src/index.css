@@ -69,7 +69,7 @@ button:hover {
   padding: 5px 15px;
 }
 
-/* --------------- Pulsanti della paginazione: da aggiungere SICURAMENTE in un suo module.css --------------- */
+/* --------------- Pulsanti della paginazione: --------------- */
 .button-pagination {
   /* color: black;
   border: 1px solid black;
@@ -128,9 +128,43 @@ button:hover {
   border: 1px solid #DEE2E6;
 }
 
-/* --------------- Fine pulsanti della paginazione: da aggiungere eventualmente in un suo module.css --------------- */
+/* Media query per ridurre il font-size e il padding del testo per i dispositivi mobili: */
+@media (max-width: 576px) {
+  .button-pagination {
+    font-size: 12px !important;
+    font-weight: 600;
+    padding: 5px 10px;
+  }
 
-/* CSS personalizzato del componente Loader.jsx */
+  .button-pagination:hover {
+    font-size: 12px !important;
+    font-weight: 600;
+    padding: 5px 10px;
+  }
+}
+
+/* --------------- Fine pulsanti della paginazione --------------- */
+
+/* --------------------- CSS INPUT FORM DI RICERCA AVANZATA --------------------- */
+.filter-form:hover {
+  border: 1px solid;
+  border-color: var(--color-red-text-sidebar);
+  box-shadow: 0 0 8px rgba(0, 95, 204, 0.3);
+  /* bordo no */
+  outline: none;
+}
+
+.filter-form:focus {
+  border: 1px solid;
+  border-color: var(--color-red-text-sidebar);
+  box-shadow: 0 0 8px rgba(0, 95, 204, 0.3);
+  /* bordo no */
+  outline: none;
+}
+
+/* --------------------- FINE CSS INPUT FORM DI RICERCA AVANZATA --------------------- */
+
+/* --------------- CSS personalizzato del componente Loader.jsx --------------- */
 #loader {
   position: fixed;
   top: 0;
@@ -144,3 +178,5 @@ button:hover {
   justify-content: center;
   align-items: center;
 }
+
+/* --------------- Fine CSS personalizzato del componente Loader.jsx --------------- */

@@ -1,0 +1,81 @@
+.cardWrapper {
+    border: none;
+    box-shadow: 0 0 10px rgba(177, 174, 174, 0.8);
+    overflow: hidden;
+    /* Nasconde qualsiasi parte dell'immagine che esce dai limiti della card */
+}
+
+.cardImg {
+    border-radius: 0px;
+    width: 100%;
+    height: 300px;
+    max-height: 300px;
+    /* Altezza fissa per uniformare le immagini */
+    object-fit: cover;
+    /* Garantisce che l'immagine copra tutta la zona senza distorsioni */
+    object-position: bottom;
+    /* L'immagine parte dall'alto se ha bisogno di essere ritagliata */
+}
+
+.cardStar {
+    color: #bea30e;
+}
+
+.btn-card {
+    border-radius: 0px;
+    color: white;
+    border: 2px solid black;
+    background-color: black;
+    text-transform: uppercase;
+    font-size: 16px !important;
+    font-weight: 600;
+    padding: 5px 15px;
+}
+
+.btn-card:hover {
+    color: white;
+    border: 2px solid #90030f;
+    background-color: #90030f;
+    text-transform: uppercase;
+    font-size: 16px !important;
+    font-weight: 800;
+    padding: 5px 15px;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px !important;
+    font-weight: 600;
+    /* text-transform: none; */
+}
+
+.description-heigth{
+    height: 112px;
+    max-height: 112px;
+}
+
+/* ---------------- Altezza massima del contenitore del titolo: ---------------- */
+/* Di default: su tablet, con troncamento */
+.title-heigth {
+    /* Impedisce l'andata a capo. Il testo rimane su una sola riga. */
+    white-space: nowrap;
+    /* Nascondo il testo in eccesso. Il testo oltre i limiti del contenitore viene nascosto. */
+    overflow: hidden;
+    /* Aggiunge i "..." dopo il testo tagliato */
+    text-overflow: ellipsis;
+    /* Imposto una larghezza massima */
+    max-width: 100%;
+}
+
+/* Da mobile in su (<=576px): disattiva il troncamento */
+@media (max-width: 576px) {
+    .title-heigth {
+        white-space: normal;
+        overflow: visible;
+        text-overflow: unset;
+        max-width: none;
+    }
+}
+
+/* ---------------- Fine altezza massima del contenitore del titolo: ---------------- */
