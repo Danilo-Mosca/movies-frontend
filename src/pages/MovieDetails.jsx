@@ -22,9 +22,7 @@ export default function MovieDetails() {
 
     return (
         <>
-            <section className="container py-4">
-                <div>Pagina dettagli film. Lo slug di questo film è: {slug}</div>
-
+            <section>
                 {/* Se il film non è null, cioè esiste, allora ritorno l'immagine e la descrizione dello stesso richiamando il componente CardSingleMovie */}
                 {movie && (
                     <CardMovieDetails data={movie} />

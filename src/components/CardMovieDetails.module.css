@@ -1,0 +1,52 @@
+/* Su desktop l'immagine jumbotron è alta 400px */
+.jumbotron {
+    /* altezza fissa */
+    height: 450px;
+    /* aspect-ratio: 1/0.2; */
+    overflow: hidden;
+    position: relative;
+}
+
+.jumbotron-img {
+    width: 100%;
+    height: 100%;
+    /* Taglia l'immagine mantenendo proporzioni corrette */
+    object-fit: cover;
+    /* Centra sempre l'immagine */
+    object-position: center;
+}
+
+.overlay-image-container {
+    display: flex;
+    justify-content: center;
+    /* Sovrapposizione verso l'alto di 200px dell'immagine di overlay */
+    margin-top: -200px;
+    position: relative;
+    z-index: 2;
+}
+
+.overlay-img {
+    /* Su desktop la larghezza dell'immagine di overlay è di 500px */
+    width: 500px;
+    height: auto;
+    /* border-radius: 50%;      opzionale se voglio arrotondare l'immagine di overlay */
+    /* Aggiungo un ombra all'immagine di overlay */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+}
+
+/* MEDIA QUERIES per il responsive */
+@media (max-width: 768px) {
+    .jumbotron {
+        /* Su tablet/smartphone: l'immagine jumbotron la riduco a 250px */
+        height: 250px;
+    }
+
+    .overlay-image-container {
+        margin-top: -100px;
+    }
+
+    .overlay-img {
+        /* Su tablet/smartphone: la larghezza dell'immagine di overlay la riduco a 140px */
+        width: 240px;
+    }
+}

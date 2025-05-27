@@ -113,7 +113,9 @@ const GlobalProvider = ({ children }) => {
                 // console.log(res);
                 // console.log(res.data);
                 // console.log(res.data.data);
-                setMovie(res.data.data);
+                setMovie(res.data.movie);
+                console.log(res.data.movie);
+
             }).catch((error) => {
                 console.log(error);
                 // console.log("Errore status: " + error.status);
@@ -158,7 +160,8 @@ const GlobalProvider = ({ children }) => {
         getAllGenres,
         search,
         isSearching,
-        isLoading
+        isLoading,
+        posterUrl
     }
 
     return (
