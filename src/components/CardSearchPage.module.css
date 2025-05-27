@@ -15,6 +15,7 @@
     /* Garantisce che l'immagine copra tutta la zona senza distorsioni */
     object-position: bottom;
     /* L'immagine parte dall'alto se ha bisogno di essere ritagliata */
+    cursor: pointer;
 }
 
 .cardStar {

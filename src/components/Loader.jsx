@@ -1,5 +1,6 @@
 // Importo la libreria di Fontawesome
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+// Importo l'icona faSpinner:
 import { faSpinner } from '@fortawesome/free-solid-svg-icons'
 export default function Loader() {
     return (
