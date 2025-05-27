@@ -5,9 +5,13 @@ import { Outlet } from "react-router-dom";      //Placeholter dell'outlet person
 function DefaultLayout() {
     return (
         <>
-            <Header />
-            <Outlet />
-            <Footer />
+            <div className="layout">
+                <Header />
+                <main className="content">
+                    <Outlet />
+                </main>
+                <Footer />
+            </div>
         </>
     );
 }

@@ -1,6 +1,6 @@
 function Footer() {
     return (
-        <footer className=" bg-secondary p-3 mb-2 bg-secondary text-white text-center">
+        <footer className=" bg-secondary p-3 bg-secondary text-white text-center">
             Made with &hearts; by Movie App
         </footer>
     );

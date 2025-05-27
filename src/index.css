@@ -178,5 +178,21 @@ button:hover {
   justify-content: center;
   align-items: center;
 }
-
 /* --------------- Fine CSS personalizzato del componente Loader.jsx --------------- */
+
+/* --------------- Impostazione del Layout a piena distanza e del footer in fondo alla pagina --------------- */
+.layout {
+  display: flex;
+  flex-direction: column;
+  /* occupa tutta l'altezza dello schermo. fa estendere il main contenuto dinamico dell'Outlet nel DefaultLayout lungo tutta l'altezza della viewport */
+  min-height: 100vh;
+}
+
+.content {
+  /* fa espandere il contenuto per "spingere" il footer in basso. Occupa tutto lo spazio disponibile tra header e footer:
+   flex: 1: indica al <main> che deve espandersi per occupare tutto lo spazio residuo. 
+   In pratica: Se il contenuto è tanto, occupa quello che serve. 
+   Se è poco, occupa abbastanza spazio per spingere il footer in fondo.*/
+  flex: 1;
+}
+/* --------------- Fine impostazione del Layout a piena distanza e del footer in fondo alla pagina --------------- */
