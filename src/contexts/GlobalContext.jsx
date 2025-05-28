@@ -114,7 +114,7 @@ const GlobalProvider = ({ children }) => {
                 // console.log(res.data);
                 // console.log(res.data.data);
                 setMovie(res.data.movie);
-                console.log(res.data.movie);
+                // console.log(res.data.movie);
 
             }).catch((error) => {
                 console.log(error);

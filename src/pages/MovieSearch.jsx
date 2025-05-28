@@ -1,16 +1,26 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useGlobalContext } from "../contexts/GlobalContext";   // importo il GlobalContext
 import CardSearchPage from "../components/CardSearchPage";
 import Pagination from "../components/Pagination";
 import { useLocation, useNavigate } from "react-router-dom";
 import { FaSadTear } from "react-icons/fa";     // importo un'icona per il messaggio personalizzato di nessun risultato trovato per la ricerca
 import Loader from "../components/Loader";
+import { debounce } from "lodash";      // importo debounce dalla libreria la funzione lodash
 
 export default function MoviesSearch() {
     // Destrutturo useGlobalContext da cui prelevo le variabili di stato movies, currentPage, lastPage e la funzione getMovies() che richiama axios per l'API di tutti i film:
     const { movies, currentPage, lastPage, totalPage, getMovies, isLoading, genresList, getAllGenres } = useGlobalContext();
     const navigate = useNavigate();
     const location = useLocation();     // hook che fornisce informazioni sull’URL attuale
+
+    /* Debounce di lodash: crea una funzione debounce di lodash che viene memorizzata e non ricreata ad ogni render del componente,
+    questa funzione, ritarda l’esecuzione di getMovies di 1000 millisecondi(1 secondo) dopo l’ultima chiamata.
+    Utile quando l'utente digita in un campo di ricerca, per evitare chiamate API a ogni tasto premuto.
+    useRef è un hook di React che mantiene un valore persistente tra i render.
+    .current è la proprietà che contiene il valore effettivo, qui viene usato per memorizzare la funzione debounce in modo che non venga ricreata ad ogni render. Quindi:
+    Crea una sola volta (al primo render) una funzione debounce di getMovies (che si attiva 1 secondo dopo l’ultima chiamata), la memorizza in debounceGetMovie, e con "useRef" la mantiene stabile. così che in tutti i render successivi, React riutilizza la stessa funzione, evitando sprechi e problemi di comportamento. */
+    const debounceGetMovie = useRef(debounce(getMovies, 1000)).current;     // RIGA DI CODICE AGGIUNTA DOPO L'IMPORTAZIONE DELLA FUNZIONE debounce() DALLA LIBRERIA LODASH
+    
     // URLSearchParams è una classe JavaScript nativa che permette di leggere e gestire i parametri della query string. Mi creo un oggetto "queryParams" da cui estraggo i valori dei parametri
     // location.search restituisce la query string, ad esempio: "?query=Matrix"
     const queryParams = new URLSearchParams(location.search);
@@ -72,7 +82,8 @@ export default function MoviesSearch() {
         }
 
         // Chiamo getMovies pagina 1 con filtri aggiornati
-        getMovies(1, filters);
+        // getMovies(1, filters);       // vecchio codice senza la libreria lodash e senza il componente debounce
+        debounceGetMovie(1, filters);   // nuovo codice con aggiunta la funzione debounceGetMovie()
     }, [filters]);  // rieseguo lo useEffect ogni volta che cambia la useState filter
 
     // Funzione che Aggiorna filtro e resetta pagina a 1 (ricerca live al cambio input)

@@ -10,7 +10,7 @@ const posterUrl = import.meta.env.VITE_API_POSTER;
 
 function CardHomePage({ data }) {
     // Funzione che disegna le stelle:
-    function drawStars(){
+    const drawStars = () => {
         let stars = [];
         for (let i = 1; i <= 5; i++) {
             // Controllo le star con Math.ceil che arrotonda per eccesso:
