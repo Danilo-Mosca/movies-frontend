@@ -20,7 +20,7 @@
     display: flex;
     justify-content: center;
     /* Sovrapposizione verso l'alto di 200px dell'immagine di overlay */
-    margin-top: -200px;
+    margin-top: -300px;
     position: relative;
     z-index: 2;
 }
@@ -32,6 +32,10 @@
     /* border-radius: 50%;      opzionale se voglio arrotondare l'immagine di overlay */
     /* Aggiungo un ombra all'immagine di overlay */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+}
+
+.cardStar {
+    color: #BEA30E!important;
 }
 
 /* MEDIA QUERIES per il responsive */
@@ -49,4 +53,14 @@
         /* Su tablet/smartphone: la larghezza dell'immagine di overlay la riduco a 140px */
         width: 240px;
     }
+}
+
+/* .h3-text {
+    text-transform: uppercase;
+} */
+
+.span-content {
+    font-size: 18px;
+    font-weight: 400;
+    color: #90030f;
 }

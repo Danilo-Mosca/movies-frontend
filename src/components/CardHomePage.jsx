@@ -10,7 +10,7 @@ const posterUrl = import.meta.env.VITE_API_POSTER;
 
 function CardHomePage({ data }) {
     // Funzione che disegna le stelle:
-    const drawStars = () => {
+    function drawStars(){
         let stars = [];
         for (let i = 1; i <= 5; i++) {
             // Controllo le star con Math.ceil che arrotonda per eccesso:
@@ -44,7 +44,7 @@ function CardHomePage({ data }) {
                 <div className="card-text">Nazionalità:</div>
                 <p className="card-text  text-uppercase">{data.nationality !== null ? `${data.nationality}` : "Nazionalità non inserita"}</p>
                 <div>Media recensioni:</div>
-                {data.rating !== null ? <div className={style.cardStar}>{drawStars()}</div> : "Media assente"}
+                {data.rating !== null ? <div className={style.cardStar}>{drawStars()}</div> : "Media recensioni assente"}
                 
                 <button className={`mt-3 ${style["btn-card"]}`}><Link to={`/movies/${data.slug}`}>Dettagli</Link></button>
             </div>

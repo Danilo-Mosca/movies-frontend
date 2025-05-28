@@ -65,7 +65,7 @@ const GlobalProvider = ({ children }) => {
         axios.get(apiUrl + "/genres")
             .then((res) => {
                 setGenresList(res.data.genres);
-                console.log(res.data.genres);
+                // console.log(res.data.genres);
             })
             .catch((err) => {
                 console.log(err);
