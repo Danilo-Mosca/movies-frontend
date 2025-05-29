@@ -178,6 +178,7 @@ button:hover {
   justify-content: center;
   align-items: center;
 }
+
 /* --------------- Fine CSS personalizzato del componente Loader.jsx --------------- */
 
 /* --------------- Impostazione del Layout a piena distanza e del footer in fondo alla pagina --------------- */
@@ -195,4 +196,25 @@ button:hover {
    Se è poco, occupa abbastanza spazio per spingere il footer in fondo.*/
   flex: 1;
 }
+
 /* --------------- Fine impostazione del Layout a piena distanza e del footer in fondo alla pagina --------------- */
+
+/* ------------------------- Footer ------------------------- */
+footer {
+  background-color: #1C1C1C;
+}
+
+.link-footer {
+  font-size: 18px !important;
+  font-weight: 300;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  /* Forzo l'accapo quando non c'è più spazio */
+  flex-wrap: wrap;
+}
+
+.link-footer:hover {
+  color: var(--color-red-text-sidebar);
+}
+/* ------------------------- Fine footer ------------------------- */
