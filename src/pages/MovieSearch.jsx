@@ -22,14 +22,14 @@ export default function MoviesSearch() {
     const debounceGetMovie = useRef(debounce(getMovies, 1000)).current;     // RIGA DI CODICE AGGIUNTA DOPO L'IMPORTAZIONE DELLA FUNZIONE debounce() DALLA LIBRERIA LODASH
     
     // URLSearchParams è una classe JavaScript nativa che permette di leggere e gestire i parametri della query string. Mi creo un oggetto "queryParams" da cui estraggo i valori dei parametri
-    // location.search restituisce la query string, ad esempio: "?query=Matrix"
+    // location.search restituisce la query string, ad esempio: "?title=Matrix"
     const queryParams = new URLSearchParams(location.search);
     // console.log("queryParams: " + queryParams);
 
     // Prendo i valori dal query string (se presenti)
-    // queryParams.get("query") restituisce il valore del parametro query presente nell'URL (es. "Matrix")
-    // Se non esiste(null), allora con || "" la variabile "queryFromUrl" diventa una stringa vuota
-    const queryFromUrl = queryParams.get("query") || "";
+    // queryParams.get("title") restituisce il valore del parametro "title" presente nell'URL (es. "Matrix")
+    // Se non esiste(null), allora con || "" la variabile "titleFromUrl" diventa una stringa vuota
+    const titleFromUrl = queryParams.get("title") || "";
     const genreFromUrl = queryParams.get("genre") || "";
     const directorFromUrl = queryParams.get("director") || "";
     const actorFromUrl = queryParams.get("actor") || "";
@@ -39,7 +39,7 @@ export default function MoviesSearch() {
     // Stato filtri
     // Stato locale per memorizzare i filtri attivi (nel caso in cui il risultato di ricerca sia suddiviso in più pagine)
     const [filters, setFilters] = useState({
-        query: queryFromUrl,
+        title: titleFromUrl,
         genre: genreFromUrl,
         director: directorFromUrl,
         actor: actorFromUrl,
@@ -54,7 +54,7 @@ export default function MoviesSearch() {
     // Quando cambia l'URL (query params), sincronizzo i filtri nello stato
     useEffect(() => {
         setFilters({
-            query: queryFromUrl,
+            title: titleFromUrl,
             genre: genreFromUrl,
             director: directorFromUrl,
             actor: actorFromUrl,
@@ -128,8 +128,8 @@ export default function MoviesSearch() {
                         <input
                             type="text"
                             placeholder="Titolo film"
-                            value={filters.query}
-                            onChange={(e) => handleFilterChange("query", e.target.value)}
+                            value={filters.title}
+                            onChange={(e) => handleFilterChange("title", e.target.value)}
                             className="form-control mb-2 filter-form"
                         />
 
@@ -199,9 +199,9 @@ export default function MoviesSearch() {
                             <div className="row">
                                 <h5>
                                     <span style={{ color: "#DB2B39", fontSize: "24px", fontWeight: "500" }}>{totalPage}</span> film trovati
-                                    {queryFromUrl !== "" && (
+                                    {titleFromUrl !== "" && (
                                         <>
-                                                &nbsp;per: <span style={{ color: "#DB2B39", fontSize: "24px", fontWeight: "500" }}>{'"' + queryFromUrl + '"'}</span>
+                                                &nbsp;per: <span style={{ color: "#DB2B39", fontSize: "24px", fontWeight: "500" }}>{'"' + titleFromUrl + '"'}</span>
                                         </>
                                     )}
                                 </h5>

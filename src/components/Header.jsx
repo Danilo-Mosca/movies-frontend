@@ -30,8 +30,8 @@ function Header() {
         // Al click sul pulsante assegno il valore della variabile di stato querySelected al GlobalContext
         search(querySelected);        // Eseguo la ricerca
         // E poi reindirizzo l'utente alla pagina di ricerca se questo, in qualunque pagina si trovi, ha eseguito una ricerca dal pulsante cerca nell'header.
-        // Agganciando ad esso la o le query della ricerca che ho eseguito all’URL, es: /movies?query=Matrix
-        navigate(`/movies?query=${encodeURIComponent(querySelected)}`);
+        // Agganciando ad esso la o le query della ricerca che ho eseguito all’URL, es: /movies?query=Matrix che in questo caso sarà: /movies?title=Matrix
+        navigate(`/movies?title=${encodeURIComponent(querySelected)}`);
     }
 
     return (
@@ -61,8 +61,8 @@ function Header() {
                                     placeholder="Cerca un film"
                                     className="me-2"
                                     aria-label="Search"
-                                    name="query"
-                                    id={style.query}
+                                    name="title"
+                                    id={style.title}
                                     onChange={handleInput}
                                     // style={{ borderRadius: '0px' }}
                                 />
