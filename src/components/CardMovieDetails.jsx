@@ -3,10 +3,16 @@ import style from "./CardMovieDetails.module.css";
 // Importo la libreria di Fontawesome
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 // Importo le varie icone:
-import { faCalendarDays } from "@fortawesome/free-solid-svg-icons";
-/* importo le icone FaStar e FaRegStar di React dopo averle installate con il comando:
+import { faFilm } from "@fortawesome/free-solid-svg-icons";
+/* importo le icone FaStar e FaRegStar e tutte le altre icone di React dopo averle installate con il comando:
    npm install react-icons --save */
 import { FaStar, FaRegStar } from "react-icons/fa";
+import { RxLapTimer } from "react-icons/rx";
+import { BsCalendarMonth } from "react-icons/bs";
+import { PiFilmSlate, PiFilmReelLight, PiFilmStrip } from "react-icons/pi";
+import { BiCameraMovie } from "react-icons/bi";
+import { GiFilmProjector, GiWorld } from "react-icons/gi";
+import { MdRateReview } from "react-icons/md";
 import { useState } from "react";
 import { useGlobalContext } from "../contexts/GlobalContext";   // importo il GlobalContext
 
@@ -58,7 +64,7 @@ export default function CardMovieDetails({ data }) {
                 <div className="card shadow-sm my-2">
                     <div className="card-header bg-dark text-white">
                         <h3 className="p-2" style={{ textTransform: "uppercase" }}>
-                            <FontAwesomeIcon icon={faCalendarDays} style={{ color: "white", fontSize: "30px" }} className="pe-3" />
+                            <FontAwesomeIcon icon={faFilm} style={{ color: "white", fontSize: "30px" }} className="pe-3" />
                             {data.title}
                         </h3>
                     </div>
@@ -72,8 +78,8 @@ export default function CardMovieDetails({ data }) {
                         {/* --------------------------------- Anno di uscita ---------------------------------*/}
                         <div className="d-block d-md-flex justify-content-start align-items-center mb-4">
                             <span className="col-md-4">
-                                <FontAwesomeIcon icon={faCalendarDays} style={{ color: "black", fontSize: "26px" }} className="pe-3" />
-                                <span className={`pe-1 ${style["span-content"]}`}>Anno di uscita:</span>
+                                <BsCalendarMonth style={{ color: "black", fontSize: "30px" }} />
+                                <span className={`ps-3 pe-1 ${style["span-content"]}`}>Anno di uscita:</span>
                             </span>
                             <span style={{ color: "black" }} className={`col-md-8 ${style["span-content"]}`}>{data.release_year}</span>
                         </div>
@@ -81,8 +87,8 @@ export default function CardMovieDetails({ data }) {
                         {/* --------------------------------- Durata ---------------------------------*/}
                         <div className="d-block d-md-flex justify-content-start align-items-center mb-4">
                             <span className="col-md-4">
-                                <FontAwesomeIcon icon={faCalendarDays} style={{ color: "black", fontSize: "26px" }} className="pe-3" />
-                                <span className={`pe-1 ${style["span-content"]}`}>Durata:</span>
+                                <RxLapTimer style={{ color: "black", fontSize: "30px" }} />
+                                <span className={`ps-3 pe-1 ${style["span-content"]}`}>Durata:</span>
                             </span>
                             <span style={{ color: "black" }} className={`col-md-8 ${style["span-content"]}`}>{data.duration} minuti</span>
                         </div>
@@ -90,8 +96,8 @@ export default function CardMovieDetails({ data }) {
                         {/* --------------------------------- Genere ---------------------------------*/}
                         <div className="d-block d-md-flex justify-content-start align-items-center mb-4">
                             <span className="col-md-4">
-                                <FontAwesomeIcon icon={faCalendarDays} style={{ color: "black", fontSize: "26px" }} className="pe-3" />
-                                <span className={`pe-1 ${style["span-content"]}`}>Genere:</span>
+                                <PiFilmReelLight style={{ color: "black", fontSize: "30px" }} />
+                                <span className={`ps-3 pe-1 ${style["span-content"]}`}>Genere:</span>
                             </span>
 
                             <span style={{ color: "black" }} className={`col-md-8 ${style["span-content"]}`}>
@@ -110,8 +116,8 @@ export default function CardMovieDetails({ data }) {
                         {/* --------------------------------- Nazionalità ---------------------------------*/}
                         <div className="d-block d-md-flex justify-content-start align-items-center mb-4">
                             <span className="col-md-4">
-                                <FontAwesomeIcon icon={faCalendarDays} style={{ color: "black", fontSize: "26px" }} className="pe-3" />
-                                <span className={`pe-1 ${style["span-content"]}`}>Nazionalità del film:</span>
+                                <GiWorld style={{ color: "black", fontSize: "30px" }} />
+                                <span className={`ps-3 pe-1 ${style["span-content"]}`}>Nazionalità del film:</span>
                             </span>
 
                             <span style={{ color: "black" }} className={`col-md-8 ${style["span-content"]}`}>
@@ -126,8 +132,8 @@ export default function CardMovieDetails({ data }) {
                         {/* --------------------------------- Descrizione ---------------------------------*/}
                         <div className="d-block d-md-flex justify-content-start align-items-center mb-4">
                             <span className="col-md-4">
-                                <FontAwesomeIcon icon={faCalendarDays} style={{ color: "black", fontSize: "26px" }} className="pe-3" />
-                                <span className={`pe-1 ${style["span-content"]}`}>Descrizione:</span>
+                                <PiFilmStrip style={{ color: "black", fontSize: "30px" }} />
+                                <span className={`ps-3 pe-1 ${style["span-content"]}`}>Descrizione:</span>
                             </span>
                             <span style={{ color: "black" }} className={`col-md-8 ${style["span-content"]}`}>{data.description}</span>
                         </div>
@@ -135,8 +141,8 @@ export default function CardMovieDetails({ data }) {
                         {/* --------------------------------- Regista ---------------------------------*/}
                         <div className="d-block d-md-flex justify-content-start align-items-center mb-4">
                             <span className="col-md-4">
-                                <FontAwesomeIcon icon={faCalendarDays} style={{ color: "black", fontSize: "26px" }} className="pe-3" />
-                                <span className={`pe-1 ${style["span-content"]}`}>Regista:</span>
+                                <GiFilmProjector style={{ color: "black", fontSize: "30px" }} />
+                                <span className={`ps-3 pe-1 ${style["span-content"]}`}>Regista:</span>
                             </span>
 
                             <span style={{ color: "black" }} className={`col-md-8 ${style["span-content"]}`}>
@@ -151,8 +157,8 @@ export default function CardMovieDetails({ data }) {
                         {/* --------------------------------- Attori ---------------------------------*/}
                         <div className="d-block d-md-flex justify-content-start align-items-center mb-4">
                             <span className="col-md-4">
-                                <FontAwesomeIcon icon={faCalendarDays} style={{ color: "black", fontSize: "26px" }} className="pe-3" />
-                                <span className={`pe-1 ${style["span-content"]}`}>Attori:</span>
+                                <PiFilmSlate style={{ color: "black", fontSize: "30px" }} />
+                                <span className={`ps-3 pe-1 ${style["span-content"]}`}>Attori:</span>
                             </span>
 
                             <span style={{ color: "black" }} className={`col-md-8 ${style["span-content"]}`}>
@@ -160,8 +166,8 @@ export default function CardMovieDetails({ data }) {
                                     (
                                         data.actors.map((actor, index) => (
                                             index < data.actors.length - 1 ? (
-                                                <span key={actor.index} style={{ color: "black" }} className={style["span-content"]}>{actor.first_name} {actor.last_name},&nbsp;</span>
-                                            ) : <span key={actor.index} style={{ color: "black" }} className={style["span-content"]}>{actor.first_name} {actor.last_name}</span>
+                                                <span key={actor.id} style={{ color: "black" }} className={style["span-content"]}>{actor.first_name} {actor.last_name},&nbsp;</span>
+                                            ) : <span key={actor.id} style={{ color: "black" }} className={style["span-content"]}>{actor.first_name} {actor.last_name}</span>
                                         ))
                                     )
                                     : ("Attori non inseriti")}
@@ -171,8 +177,8 @@ export default function CardMovieDetails({ data }) {
                         {/* --------------------------------- Voto ---------------------------------*/}
                         <div className="d-block d-md-flex justify-content-start align-items-center mb-4">
                             <span className="col-md-4">
-                                <FontAwesomeIcon icon={faCalendarDays} style={{ color: "black", fontSize: "26px" }} className="pe-3" />
-                                <span style={{ color: "#90030f" }} className={`pe-2 ${style["span-content"]}`}>Voto:</span>
+                                <MdRateReview style={{ color: "black", fontSize: "30px" }} />
+                                <span style={{ color: "#90030f" }} className={`ps-3 pe-2 ${style["span-content"]}`}>Voto:</span>
                             </span>
 
                             <span className={`col-md-8 ${style["span-content"]} ${style.cardStar}`}>
