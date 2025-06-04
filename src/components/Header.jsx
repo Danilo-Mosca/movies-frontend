@@ -39,9 +39,24 @@ function Header() {
             <header className={style.header}>
                 <Navbar expand="md">
                     <Container fluid>
+                        {/* OLD code per il logo:
                         <Navbar.Brand>
                             <NavLink to="/" className={({ isActive }) => `nav-link ${style["link-custom"]} ${isActive ? style["item-selected"] : ""}`}>
                                 <img src="./../favicon.png" width="30" height="30" alt="logo Movie App" />Movie App.net
+                            </NavLink>
+                        </Navbar.Brand> */}
+                        <Navbar.Brand>
+                            <NavLink to="/" end>
+                                {({ isActive }) => (
+                                    <span className="d-flex align-items-center gap-2">
+                                        <img
+                                            src={isActive ? "/img/logo/Logo_hover.png" : "/img/logo/Logo.png"}
+                                            width="60"
+                                            height="60"
+                                            alt="Logo Movie App"
+                                        />
+                                    </span>
+                                )}
                             </NavLink>
                         </Navbar.Brand>
 
@@ -64,7 +79,7 @@ function Header() {
                                     name="title"
                                     id={style.title}
                                     onChange={handleInput}
-                                    // style={{ borderRadius: '0px' }}
+                                // style={{ borderRadius: '0px' }}
                                 />
                                 <Button type="submit" className={style.searchButton}>Cerca</Button>
                             </Form>
